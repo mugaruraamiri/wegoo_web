@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Wegoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Icon Set -->
+    <link href="../static/css/icon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Animate Css -->
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+
+    <!-- Hover Css -->
+    <link href="../static/css/hover-min.css" rel="stylesheet">
+
+    <!-- Animsition -->
+    <link href="../static/css/animsition.min.css" rel="stylesheet">
+
+    <link href="../static/css/jquery.circliful.css" rel="stylesheet">
+
+    <!-- Core css -->
+    <link href="../static/css/app.css" rel="stylesheet" class="core-css">
+
+    <!-- Jquery -->
+    <script src="../static/js/jquery-1.11.2.min.js"></script>
+    <script src="../static/js/d3.min.js" charset="utf-8"></script>
+
+    <style type="text/css">
+      .ptn-menu {
+        list-style: none;
+      }
+      .ptn-menu li {
+        display: inline-block;
+      }
+      .feedback-menu {
+        list-style: none;
+      }
+      .feedback-menu li {
+        display: inline-block;
+      }
+      .feedback-icon {
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+        border: 1px solid #5090f7;
+        width: 40px;
+        height: 40px;
+        color: #fff;
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 50em;
+        transition: transform 0.4s;
+        background-color:#7689a3;
+        -webkit-transition: transform 0.4s;
+      }
+      .feedback-icon a {
+        width: 39px;
+        height: 39px;
+        color: #fff;
+      }
+      .timeline-event {
+        margin-top:20px;
+      }
+      
+    </style>
+  </head>
+
+  <body data-useId="{{ id }}">
+    
+    <!-- wrapper -->
+    <div class="wrapper animsition app-layout has-footer">
+
+      <!-- Start Header -->
+      {% include "includes/header.html" %}
+      <!-- End Header -->
+
+      <!-- Start Side Navigation -->
+      {% include "includes/asside_nav_left.html" %}
+      <!-- End Side Navigation -->
+
+      <!-- Start Right Sidebar -->
+      {% include "includes/asside_chart_right.html" %}
+      <!-- End Right Sidebar -->
+
+      <!-- Start Main Container -->
+      <div class="main-container">
+        <div class="page-header font-header no-breadcrumb">
+          Feedbacks
+        </div>
+        
+        <div class="app-wrapper app-40-60 has-page-header">
+          <div class="app-col bg-white">
+            <div class="app-scrollable-content" style="top:20px;">
+              <div class="content-wrap" style="padding-top:10px;">
+
+                <div class="panel panel-default" style="margin-top:-10px;">
+                  <div class="panel-body">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <div class="user-wrapper">
+                          <div class="profile-pic">
+                            <img src="../static/img/profile7.jpg" alt class="img-circle">
+                          </div>
+                          <div class="p-t-5">
+                            <div class="font-12 text-dark">Mugarura Amiri</div>
+                            <div class="font-10">ID: 111 222 333</div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <table class="table table-bordered font-12">
+                    <tbody>
+                      <tr>
+                        <td>Age :</td>
+                        <td>23</td>
+                      </tr>
+                      <tr>
+                        <td>Gender :</td>
+                        <td>Male</td>
+                      </tr>
+                      <tr>
+                        <td>Last Modified :</td>
+                        <td>14 Marc, 2016 10:45 PM</td>
+                      </tr>
+                      <tr>
+                        <td>Location :</td>
+                        <td>Remera</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <a href="#" class="btn btn-primary" style="width:100%; margin:0 auto;">Location</a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="app-col app-content-col bg-light no-header bg-white">
+
+            <!-- Css Loading Animation, remove class hide to enable it. -->
+            <div class="loading-wrap">
+              <div class="loading-dots">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+            </div>
+
+            <!-- Header for the right column, remove class hide to enable it. -->
+            <div class="app-scrollable-content">
+              <div class="content-wrap clearfix">
+              <!-- content Area -->
+              <div class="col-lg-12 bg-white" style="height:550px;">
+                <div class="mapping "></div>
+                <script src="../static/js/map.js" charset="utf-8"></script>
+              </div>
+                
+              <!-- End content -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- End Main Container -->
+
+      <!-- Start Footer -->
+      {% include "includes/footer.html" %}
+      <!-- End Footer -->
+    </div>
+    <!-- /.wrapper -->
+    <!-- Bootstrap -->
+    <script src="../static/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Modernizr -->
+    <script src="../static/js/modernizr.min.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="../static/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Animsition -->
+    <script src="../static/js/jquery.animsition.min.js"></script>
+
+    <!-- Flot -->
+    <script src="../static/js/jquery.flot.min.js"></script>
+
+    <script src="../static/js/jquery.circliful.min.js"></script>
+
+    <!-- App -->
+    <script src="../static/js/data.js"></script>
+    <script src="../static/js/app.min.js"></script>
+
+    <script>
+      $( document ).ready(function() {
+        var ptnid = $("body").attr("data-useId");
+        
+      });
+    </script>
+
+  </body>
+</html>

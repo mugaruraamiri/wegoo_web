@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <title>Wegoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/bootstrap.min.css" rel="stylesheet">
+	
+  	<!-- Icon Set -->
+  	<link href="../static/css/icon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Animsition -->
+    <link href="../static/css/animsition.min.css" rel="stylesheet">
+
+  	<!-- Core css -->
+  	<link href="../static/css/app.css" rel="stylesheet">
+  </head>
+
+	<body class="bg-dark">
+    
+    <!-- wrapper -->
+		<div class="wrapper animsition">
+      <div class="container text-center">
+        <h1 class="font-header login-header text-upper">Wegoo<span class="text-main">Admin</span></h1>
+          <div class="single-wrap">
+          
+            <div class="loading-wrap">
+              <div class="loading-dots">
+               <div class="dot1"></div>
+               <div class="dot2"></div>
+              </div>
+            </div>
+
+          <div class="single-inner-padding text-center">
+            <h3 class="font-header no-m-t">Create a new account</h3>
+
+            <div class="dots-divider m-t-20 center-block"><span class="icon-flickr4"></span></div>
+
+            <div class="form-group m-t-30">
+              <input type="text" id="user_name" class="form-control input-lg font-14" placeholder="Name">
+            </div>
+
+            <div class="form-group m-t-30">
+              <input type="text" id="user_email" class="form-control input-lg font-14" placeholder="Email Address">
+            </div>
+
+            <div class="form-group form-input-group m-b-5">
+              <input type="password" id="user_password" class="form-control input-lg font-14" placeholder="Password">
+              <input type="password" id="user_cpassword" class="form-control input-lg font-14" placeholder="Confirm Password">
+            </div>
+
+            <a href="#" id="btnregister" class="btn btn-main btn-lg btn-block font-14 m-t-30">Create an Account</a>
+
+            <div class="m-t-20 text-muted font-11">Already have an account?</div>
+
+            <a href="/login" class="btn btn-dark btn-lg btn-block font-14 m-t-20 animsition-link">Login</a>
+          </div><!-- /.login-inner -->
+        </div><!-- /.login-wrap -->
+      </div><!-- /.container -->
+    </div>
+    <!-- /.wrapper -->
+
+		<!-- Jquery -->
+  	<script src="../static/js/jquery-1.11.2.min.js"></script>
+  	
+    <!-- Bootstrap -->
+    <script src="../static/bootstrap/bootstrap.min.js"></script>
+
+  	<!-- Modernizr -->
+    <script src="../static/js/modernizr.min.js"></script>
+
+    <!-- Slim Scroll -->
+    <script src="../static/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Animsition -->
+    <script src="../static/js/jquery.animsition.min.js"></script>
+
+    <script>
+      $(function()  {
+        $(".animsition").animsition({
+        
+          inClass               :   'zoom-in-sm',
+          outClass              :   'zoom-out-sm',
+          inDuration            :    1500,
+          outDuration           :    800,
+          linkElement           :   '.animsition-link',
+          // e.g. linkElement   :   'a:not([target="_blank"]):not([href^=#])'
+          loading               :    true,
+          loadingParentElement  :   'body', //animsition wrapper element
+          loadingClass          :   'animsition-loading',
+          unSupportCss          : [ 'animation-duration',
+                                    '-webkit-animation-duration',
+                                    '-o-animation-duration'
+                                  ],
+          overlay               :   false,
+          
+          overlayClass          :   'animsition-overlay-slide',
+          overlayParentElement  :   'body'
+        });
+      });
+
+      $("#btnregister").on('click', function(ev){
+        ev.preventDefault();
+        var name = $("#user_name").val(),
+            email = $("#user_email").val(),
+            password = $("#user_password").val(),
+            cpassword = $("#user_cpassword").val();
+        if (name == '') {
+          $("#user_name").css({"border-color":"#d37388"});
+        }else if (email ==''){
+          $("#user_email").css({"border-color":"#d37388"});
+        } else if (password == '') {
+          $("#user_password").css({"border-color":"#d37388"});
+        } else if (cpassword == '') {
+          $("#user_cpassword").css({"border-color":"#d37388"});
+        } else if (password.localeCompare(cpassword) != 0) {
+          $("#user_cpassword").css({"border-color":"#d37388"});
+        } else {
+          $("#user_name").css({"border-color":"#9acf54"});
+          $("#user_email").css({"border-color":"#9acf54"});
+          $("#user_password").css({"border-color":"#9acf54"});
+          $("#user_cpassword").css({"border-color":"#9acf54"});
+
+          //show the loader
+          $(".loading-wrap").css({"display":"block"});
+          //send the data to the server
+            $.ajax({
+              url: '/register',
+              type: 'POST',
+              contentType: "application/json; charset=utf-8",
+              data: JSON.stringify(
+                {
+                  "name":name,
+                  "email":email,
+                  "password": password
+                }),
+              success: function(responce){
+                //remove the loader
+                $(".loading-wrap").css({"display":"none"});
+                console.log(responce);
+                if (responce.status == 'success') {
+                  $(".font-header").html("<i class='icon-ckeckmark' style='color:#9acf54'></i>");
+                  window.location = "/login";
+                }
+              },
+              error: function(error){
+                console.error(error);
+              }
+            });
+        }
+      });
+    </script>
+	</body>
+</html>

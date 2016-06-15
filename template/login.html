@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <title>Wegoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/bootstrap.min.css" rel="stylesheet">
+	
+  	<!-- Icon Set -->
+  	<link href="../static/css/icon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Animsition -->
+    <link href="../static/css/animsition.min.css" rel="stylesheet">
+
+  	<!-- Core css -->
+  	<link href="../static/css/app.css" rel="stylesheet">
+  </head>
+
+	<body class="bg-dark">
+    
+    <!-- wrapper -->
+		<div class="wrapper animsition">
+      <div class="container text-center">
+        <h1 class="font-header login-header text-upper">Wegoo<span class="text-main">Admin</span></h1>
+
+        <div class="single-wrap">
+
+          <div class="loading-wrap">
+            <div class="loading-dots">
+             <div class="dot1"></div>
+             <div class="dot2"></div>
+            </div>
+          </div>
+
+          <div class="single-inner-padding text-center">
+            <h3 class="font-header no-m-t">Login to your account</h3>
+
+            <div class="dots-divider m-t-20 center-block"><span class="icon-flickr4"></span></div>
+
+            <div class="form-group form-input-group m-t-30 m-b-5">
+              <input type="text" id="email" class="form-control input-lg font-14" placeholder="Email Address">
+              <input type="password" id="password" class="form-control input-lg font-14" placeholder="Password">
+            </div>
+
+            <div class="m-l-10 font-11 text-left"><a href="#">Forgot your password?</a></div>
+
+            <a href="#" id="loginHandler" class="btn btn-main btn-lg btn-block font-14 m-t-30">Login</a>
+
+            <div class="m-t-20 text-muted font-11">Don't have an account?</div>
+
+            <a href="/register" class="btn btn-dark btn-lg btn-block font-14 m-t-20 animsition-link">Create an Account</a>
+          </div><!-- /.login-inner -->
+        </div><!-- /.login-wrap -->
+      </div><!-- /.container -->
+    </div>
+    <!-- /.wrapper -->
+    
+		<!-- Jquery -->
+  	<script src="../static/js/jquery-1.11.2.min.js"></script>
+  	
+    <!-- Bootstrap -->
+    <script src="../static/bootstrap/bootstrap.min.js"></script>
+
+  	<!-- Modernizr -->
+    <script src="../static/js/modernizr.min.js"></script>
+
+    <!-- Slim Scroll -->
+    <script src="../static/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Animsition -->
+    <script src="../static/js/jquery.animsition.min.js"></script>
+
+    <script>
+      $(function()  {
+        $(".animsition").animsition({
+        
+          inClass               :   'zoom-in-sm',
+          outClass              :   'zoom-out-sm',
+          inDuration            :    1500,
+          outDuration           :    800,
+          linkElement           :   '.animsition-link',
+          // e.g. linkElement   :   'a:not([target="_blank"]):not([href^=#])'
+          loading               :    true,
+          loadingParentElement  :   'body', //animsition wrapper element
+          loadingClass          :   'animsition-loading',
+          unSupportCss          : [ 'animation-duration',
+                                    '-webkit-animation-duration',
+                                    '-o-animation-duration'
+                                  ],
+          overlay               :   false,
+          
+          overlayClass          :   'animsition-overlay-slide',
+          overlayParentElement  :   'body'
+        });
+      });
+
+      //login handler
+      $("#loginHandler").on('click', function(ev){
+        ev.preventDefault();
+        //get user data
+        var userid = $("#email").val(),
+            password = $("#password").val();
+
+        //data validation
+        if (userid == '') {
+          $("#email").css({"border-color":"#d37388"});
+        }else if(password == ''){
+          $("#password").css({"border-color":"#d37388"});
+        }else {
+          //show the loader
+          $(".loading-wrap").css({"display":"block"});
+          //send the data to the server
+          $.ajax({
+            url: '/login',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(
+              {
+                "username":userid,
+                "password":password
+              }),
+            success: function(responce){
+              //remove the loader
+              $(".loading-wrap").css({"display":"none"});
+              console.log(responce);
+              if (responce.status == "success"){
+                window.location = responce.redirect;
+              }else {
+                alert("Email or Password is incorect,please try again");
+              }
+
+            },
+            error: function(error){
+              console.error(error);
+            }
+          });
+        }
+      });
+    </script>
+	</body>
+</html>

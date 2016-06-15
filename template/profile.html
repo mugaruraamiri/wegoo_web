@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <title>Wegoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/bootstrap.min.css" rel="stylesheet">
+	
+  	<!-- Icon Set -->
+  	<link href="../static/css/icon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Animate Css -->
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+
+    <!-- Hover Css -->
+    <link href="../static/css/hover-min.css" rel="stylesheet">
+
+    <!-- Animsition -->
+    <link href="../static/css/animsition.min.css" rel="stylesheet">
+
+  	<!-- Core css -->
+    <link href="../static/css/app.min.css" rel="stylesheet" class="core-css">
+  </head>
+
+	<body>
+    
+    <!-- wrapper -->
+		<div class="wrapper animsition has-footer">
+
+      <!-- Start Header -->
+      {% include "includes/header.html" %}
+      <!-- End Header -->
+
+      <!-- Start Side Navigation -->
+      {% include "includes/asside_nav_left.html" %}
+      <!-- End Side Navigation -->
+
+      <!-- Start Right Sidebar -->
+      {% include "includes/asside_chart_right.html" %}
+      <!-- End Right Sidebar -->
+
+      <!-- Start Main Container -->
+      <div class="main-container">
+        <div class="profile-wrap content-wrap">
+          <div class="profile-header">
+            <div class="profile-pic online"> 
+              <img src="../static/img/profile1.jpg" alt="" class="img-circle img-responsive">
+            </div>
+            <div class="profile-content">
+              <div class="row">
+                <div class="col-lg-7 col-sm-6">
+                  <div class="content-wrap">
+                    <div class="font-header h4 no-m-b m-t-5">{{ username }}</div>
+                    <div class="font-12 text-muted m-t-5">{{useremail}}</div>
+                  </div>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+            </div><!-- /.profile-content -->
+          </div><!-- /.profile-header -->
+
+          <div class="m-t-15">
+            <div class="tab-content b-all no-b-t p-20 bg-white font-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div id="user-id" data-id="{{userid}}" class="font-semi-bold font-14 text-main">Account Info</div>
+                    <hr class="line-dashed m-t-10 m-b-20">
+                    <div class="info_line"> </div>
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" id="username" class="form-control" value="{{ username }}">
+                    </div>
+                    <div class="form-group">
+                      <label>Email Address/Username</label>
+                      <input type="email" id="useremail" class="form-control" value="{{ useremail }}">
+                    </div>
+                    <div class="form-group">
+                      <label>Organization</label>
+                      <input type="text" id="organization" class="form-control" value="{{ userorg }}">
+                    </div>
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input type="text" id="usertitle" class="form-control" value="{{ usertitle }}">
+                    </div>
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" id="userphone" class="form-control" value="{{ userphone }}">
+                    </div>
+                    <div class="form-group">
+                      <label>About Me</label>
+                      <textarea id="userdec" class="form-control" rows="5">
+                        {{ userdesc }}
+                      </textarea>
+                    </div>
+                  </div><!-- /.col -->
+                  <!--
+                  <div class="col-md-6">
+                    <div class="font-semi-bold font-14 text-main">
+                      Latest Activity 
+                      <div class="pull-right font-11 text-muted m-d-3">5 mins ago</div>
+                    </div>
+                    <hr class="line-dashed m-t-10 m-b-20">
+
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        You added a new <a href="#">item</a>
+                        <div class="pull-right text-muted font-11 m-d-1">Just now</div>
+                      </li>
+                      <li class="list-group-item">
+                        You created a <a href="#">discussion</a>
+                        <div class="pull-right text-muted font-11 m-d-1">2 hrs ago</div>
+                      </li>
+                      <li class="list-group-item">
+                        You comment on Carrie Orr's <a href="#">post</a>
+                        <div class="pull-right text-muted font-11 m-d-1">3 days ago</div>
+                      </li>
+                    </ul>
+                  </div><!-- /.col -->
+                </div><!-- /.row -->
+
+                <div class="text-right m-t-30">
+                  <div id="btnupdate" class="btn btn-main">Save Changes</div>
+                  <div class="btn btn-gray">Cancel</div>
+                </div>
+            </div><!-- /.tab-content -->
+          </div><!-- /.content-wrap -->
+        </div><!-- /.profile-wrap -->
+      </div>
+      <!-- End Main Container -->
+
+      <!-- Start Footer -->
+      {% include "includes/footer.html" %}
+      <!-- End Footer -->
+    </div>
+    <!-- /.wrapper -->
+
+		<!-- Jquery -->
+  	<script src="../static/js/jquery-1.11.2.min.js"></script>
+  	
+    <!-- Bootstrap -->
+    <script src="../static/bootstrap/bootstrap.min.js"></script>
+
+  	<!-- Modernizr -->
+    <script src="../static/js/modernizr.min.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="../static/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Animsition -->
+    <script src="../static/js/jquery.animsition.min.js"></script>
+
+    <!-- DATA -->
+    <script src="../static/js/data.js"></script>
+
+    <!-- App -->
+    <script src="../static/js/app.min.js"></script>
+
+    <script>
+      $("#btnupdate").on('click', function(ev){
+        ev.preventDefault();
+        var name = $("#username").val(),
+            email = $("#useremail").val(),
+            organ = $("#organization").val(),
+            usertitle = $("#usertitle").val(),
+            userphone = $("#userphone").val(),
+            userdesc = $("#userdec").val();
+        var userid = $("#user-id").attr("data-id");
+        $.ajax({
+          url: '/upateuser',
+          type: 'POST',
+          contentType: "application/json; charset=utf-8",
+          data: JSON.stringify(
+            {
+              "name":name,
+              "email":email,
+              "organ": organ,
+              "title": usertitle,
+              "phone": userphone,
+              "desc": userdesc,
+              "id": userid
+            }),
+          success: function(data){
+            console.log(data);
+            if (data.status == "success") {
+              $(".info_line").html('<div class="alert alert-success" role="alert"> Your account info is successfully updated</div>');
+            }else {
+              $(".info_line").html('<div class="alert alert-danger" role="alert"> An error occured while updating your profile! Please try again</div>');
+            }
+          },
+          error: function(err){
+            console.log(err);
+          }
+        });
+      });
+    </script>
+
+	</body>
+</html>

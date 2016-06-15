@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Wegoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Icon Set -->
+    <link href="../static/css/icon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Animate Css -->
+    <link href="../static/css/animate.min.css" rel="stylesheet">
+
+    <!-- Hover Css -->
+    <link href="../static/css/hover-min.css" rel="stylesheet">
+
+    <!-- Animsition -->
+    <link href="../static/css/animsition.min.css" rel="stylesheet">
+
+    <!-- Core css -->
+    <link href="../static/css/app.min.css" rel="stylesheet" class="core-css">
+  </head>
+
+  <body>
+    
+    <!-- wrapper -->
+    <div class="wrapper animsition has-footer">
+
+      <!-- Start Header -->
+      {% include "includes/header.html" %}
+      <!-- End Header -->
+
+      <!-- Start Side Navigation -->
+      {% include "includes/asside_nav_left.html" %}
+      <!-- End Side Navigation -->
+
+      <!-- Start Right Sidebar -->
+      {% include "includes/asside_chart_right.html" %}
+      <!-- End Right Sidebar -->
+
+      <!-- Start Main Container -->
+      <div class="main-container">
+        <div class="profile-wrap content-wrap">
+          
+          <div class="m-t-15">
+            <div class="tab-content b-all no-b-t p-20 bg-white font-12">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="font-semi-bold font-14 text-main">Users Info</div>
+                    <hr class="line-dashed m-t-10 m-b-20">
+
+                    
+                    <table class="table table-striped table-dark font-12">
+                      <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Title</th>
+                          <th class="text-center">Email</th>
+                          <th class="text-center">Username</th>
+                          <th class="text-center">status</th>
+                          <th class="text-center">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% set count = 0 %}
+                        {% for user in users%}
+                          {% block user%}
+                          <tr>
+                            <td class="text-center">{{ count = count+1 }}</td>
+                            <td>{{ escape(user["name"]) }}</td>
+                            <td class="text-center">{{ escape(user["title"]) }}</td>
+                            <td class="text-center">{{ escape(user["email"]) }}</td>
+                            <td class="text-center">{{ escape(user["email"]) }}</td>
+                            {% if user["active"] == 0 %}
+                              <td class="text-center"><label class="label label-primary">Inprogress</label></td>
+                            {% elif user["active"] == 1 %}
+                              <td class="text-center"><label class="label label-success">Active</label></td>
+                            {% elif user["active"] == 2 %}
+                              <td class="text-center"><label class="label label-danger">Desabled</label></td>
+                            {% end %}
+                            <td class="text-center">
+                            <a href="" data-id="{{user['_id']}}"><i class="icon-pencil" style="color:#5090f7;"></i></a> |
+                            <a href="" data-id="{{user['_id']}}"><i class="icon-bin" style="color:#fd7a7b;"></i></a>
+                            </td>
+                          </tr>
+                          {% end %}
+                        {% end %}
+                      </tbody>
+                    </table>
+                    
+                    
+                    
+                    
+                  </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.tab-content -->
+          </div><!-- /.content-wrap -->
+        </div><!-- /.profile-wrap -->
+      </div>
+      <!-- End Main Container -->
+
+      <!-- Start Footer -->
+      {% include "includes/footer.html" %}
+      <!-- End Footer -->
+    </div>
+    <!-- /.wrapper -->
+
+    <!-- Jquery -->
+    <script src="../static/js/jquery-1.11.2.min.js"></script>
+    
+    <!-- Bootstrap -->
+    <script src="../static/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Modernizr -->
+    <script src="../static/js/modernizr.min.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="../static/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Animsition -->
+    <script src="../static/js/jquery.animsition.min.js"></script>
+
+    <!-- DATA -->
+    <script src="../static/js/data.js"></script>
+
+    <!-- App -->
+    <script src="../static/js/app.min.js"></script>
+
+  </body>
+</html>
